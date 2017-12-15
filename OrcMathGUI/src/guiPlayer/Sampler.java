@@ -72,7 +72,6 @@ public class Sampler extends GUIApplication {
 				scroll.addObject(new TextLabel(5,30*i,100,25,"Label "+(i+1)));
 			}
 			scroll.update();
-			
 			viewObjects.add(scroll);
 			
 			
@@ -119,7 +118,7 @@ public class Sampler extends GUIApplication {
 				}
 			}); 
 			viewObjects.add(cb);
-			viewObjects.add(new Cat());
+			viewObjects.add(new Countries());
 		}
 		
 		public void mouseDragged(MouseEvent m) {
