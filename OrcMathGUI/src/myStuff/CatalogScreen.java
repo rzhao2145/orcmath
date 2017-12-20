@@ -56,31 +56,30 @@ public class CatalogScreen extends FullFunctionScreen{
 	protected void addButtonClicked() {
 		Countries c = new Countries(countryField.getText(), capitalField.getText(), monthField.getText());
 		String s = textArea.getText() + c + "\n";
-			textArea.setText(s);
-			catalog.addNewItem(countryField.getText(), capitalField.getText(), monthField.getText());
-			
-			countryField.setText("");
-			capitalField.setText("");
-			monthField.setText("");
-			
-			countryField.setInputType(TextField.INPUT_TYPE_PLAIN);
-			capitalField.setInputType(TextField.INPUT_TYPE_PLAIN);
-			monthField.setInputType(TextField.INPUT_TYPE_PLAIN);
-			
+		textArea.setText(s);
+		catalog.addNewItem(countryField.getText(), capitalField.getText(), monthField.getText());
 		
+		checkFields();
+		countryField.setText("");
+		capitalField.setText("");
+		monthField.setText("");
+		
+		countryField.setInputType(TextField.INPUT_TYPE_PLAIN);
+		capitalField.setInputType(TextField.INPUT_TYPE_PLAIN);
+		monthField.setInputType(TextField.INPUT_TYPE_PLAIN);
 
 	}
 	
 	public boolean checkFields() {
-		if(countryField.getText() == "") {
+		if(countryField.getText().equals("")) {
 			countryField.setBackground(Color.RED);
 			return false;
 		}
-		if(capitalField.getText() == "") {
+		if(capitalField.getText().equals("") {
 			capitalField.setBackground(Color.RED);
 			return false;
 		}
-		if(monthField.getText() == "") {
+		if(monthField.getText().equals("")) {
 			monthField.setBackground(Color.RED);
 		}
 		return true;
