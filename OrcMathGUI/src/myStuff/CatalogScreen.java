@@ -20,7 +20,7 @@ public class CatalogScreen extends FullFunctionScreen{
 		super(width, height);
 		// TODO Auto-generated constructor stub
 	}
-
+ 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		countryField = new TextField(40,40,200,30, "Text goes here", "Country");

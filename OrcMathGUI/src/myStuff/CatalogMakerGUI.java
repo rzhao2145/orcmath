@@ -10,7 +10,7 @@ public class CatalogMakerGUI extends GUIApplication {
 		Thread go = new Thread(sample);
 		go.start();
 	}
-	
+	 
 	public CatalogMakerGUI(int width, int height) {
 		super(width,height);
 		setVisible(true);
