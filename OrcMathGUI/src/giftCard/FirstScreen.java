@@ -2,6 +2,7 @@ package giftCard;
 
 import java.util.List;
 
+import guiTeacher.components.*;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
@@ -27,6 +28,7 @@ public class FirstScreen extends FullFunctionScreen {
 				changeScreen();
 			}
 		});
+		//addSequence("resources/reindeer", 150, 0, 0 , 256, 256, 7); 
 		viewObjects.add(background);
 		viewObjects.add(changeB);
 	}
