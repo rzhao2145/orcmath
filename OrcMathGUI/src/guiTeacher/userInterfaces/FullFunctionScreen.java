@@ -48,7 +48,7 @@ public abstract class FullFunctionScreen extends ClickableScreen implements KeyL
 		else activeKeyedComponent = null;
 		activeScrollPane = null;
 	}
-
+ 
 	@Override
 	public void initObjects(List<Visible> viewObjects) {
 		super.initObjects(viewObjects);

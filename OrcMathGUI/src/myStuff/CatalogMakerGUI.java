@@ -21,5 +21,5 @@ public class CatalogMakerGUI extends GUIApplication {
 		setScreen(s);
 	}
 	
-
+ 
 }

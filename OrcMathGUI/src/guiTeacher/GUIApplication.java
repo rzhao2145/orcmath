@@ -62,7 +62,7 @@ public abstract class GUIApplication extends JFrame implements Runnable, Compone
 		currentScreen = screen;
 		if (!screen.isFixedSize() && (screen.getWidth() != this.getWidth() || screen.getHeight() != this.getHeight())){
 			resize(getWidth(), getHeight());
-		}
+		} 
 		setContentPane(currentScreen);
 		addListeners();
 	}
