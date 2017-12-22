@@ -9,10 +9,13 @@ public class StarterGUI extends GUIApplication {
 	public static FirstScreen screen1;
 	public static SecondScreen screen2;
 	
+	
 	public static void main(String[] args){
-		 sample = new StarterGUI(750, 550);
+		 sample = new StarterGUI(1300, 1000);
 		Thread go = new Thread(sample);
 		go.start();
+		
+		
 	}
 	 
 	public StarterGUI(int width, int height) {
@@ -24,6 +27,7 @@ public class StarterGUI extends GUIApplication {
 		screen1 = new FirstScreen(getWidth(), getHeight());
 		screen2 = new SecondScreen(getWidth(), getHeight());
 		setScreen(screen1);
+
 	}
 	
 
