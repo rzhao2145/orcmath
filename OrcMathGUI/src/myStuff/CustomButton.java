@@ -14,8 +14,8 @@ public class CustomButton extends Button implements CustomLabel{
 	private String string2;
 	
 
-	public CustomButton(int x, int y, int w, int h, String text, Action action) {
-		super(x, y, w, h, text, action);
+	public CustomButton(int x, int y) {
+		super(x,y, 300,100,"",null);
 		string1 = "String 1";
 		string2 = "String 2";
 		// TODO Auto-generated constructor stub

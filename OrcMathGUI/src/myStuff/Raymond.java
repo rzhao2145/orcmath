@@ -21,7 +21,7 @@ public class Raymond extends GUIApplication{
 	@Override
 	public void initScreen() {
 		// TODO Auto-generated method stub
-		customButton = new CustomButton();
+		customButton = new CustomButton(200,200);
 		
 	}
 
