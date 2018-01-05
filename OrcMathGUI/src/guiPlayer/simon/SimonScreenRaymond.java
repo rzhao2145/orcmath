@@ -36,7 +36,54 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 		// TODO Auto-generated method stub
 		acceptingInput = false;
 		roundNumber++;
+		sequence.add(randomMove());
+		progress.setRound(roundNumber);
+		progress.setSequenceSize(sequence.size());
+		changeText("Simon's turn");
+		label.setText("");
+		playSequence();
+		changeText("Your turn");
+		acceptingInput = true;
+		sequenceIndex = 0;
+		
 	}
+	
+	public void changeText(String s) {
+		label.setText(s);
+		try {
+			Thread.sleep(1000);
+		} catch(InterruptedException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void playSequence() {
+		ButtonInterfaceRaymond b = null;
+		for(int i = 0; i < sequence.size(); i++) {
+			if(b != null) {
+				b.dim();
+			}
+			b = sequence.get(i).getButton();
+			b.highlight();
+			int sleepTime = (10/roundNumber) * 100;
+			Thread sleep = new Thread(new Runnable() {
+
+				public void run() {
+					try {
+						Thread.sleep(sleepTime);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						
+				}
+
+			});
+			sleep.start();
+		}
+		b.dim();
+	}
+	
+	
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
