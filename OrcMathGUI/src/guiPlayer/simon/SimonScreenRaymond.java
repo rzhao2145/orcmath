@@ -58,7 +58,7 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 	}
 	
 	public void playSequence() {
-		ButtonInterfaceRaymond b = null;
+		ButtonInterfaceRaymond b = getAButton();
 		for(int i = 0; i < sequence.size(); i++) {
 			if(b != null) {
 				b.dim();
