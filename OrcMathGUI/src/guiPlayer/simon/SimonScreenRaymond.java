@@ -15,6 +15,7 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 	private ButtonInterfaceRaymond[] buttons;
 	private ProgressInterfaceRaymond progress;
 	private ArrayList<MoveInterfaceRaymond> sequence;
+	
 	private int roundNumber;
 	private boolean acceptingInput;
 	private int sequenceIndex;
@@ -108,8 +109,7 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 	 * Placeholder until partner finishes implementation of ProgressInterface
 	 */
 	private ProgressInterfaceRaymond getProgress() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ProgressAnnie(20, 20, 20, 20);
 	}
 
 	private void addButtons() {
@@ -167,8 +167,7 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 	}
 
 	private ButtonInterfaceRaymond getAButton() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ButtonAnnie(0, 0, 20, 20, "", null);
 	}
 
 	private MoveInterfaceRaymond randomMove() {
@@ -185,5 +184,11 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 	private MoveInterfaceRaymond getMove(int bIndex) {
 		return null;
 	}
+	
+	public ArrayList<MoveInterfaceRaymond> getSequence() {
+		return sequence;
+	}
+
+
 
 }
