@@ -2,13 +2,15 @@ package guiPlayer.simon;
 
 public class MoveAnnie implements MoveInterfaceRaymond {
 	
-	public MoveAnnie() {
-		// TODO Auto-generated constructor stub
+	private ButtonInterfaceRaymond button;
+	
+	public MoveAnnie(ButtonInterfaceRaymond button) {
+		this.button = button;
 	}
 
 	@Override
 	public ButtonInterfaceRaymond getButton() {
-		return this;
+		return button;
 	}
 
 }

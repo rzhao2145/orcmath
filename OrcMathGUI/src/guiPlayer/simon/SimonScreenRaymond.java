@@ -1,6 +1,7 @@
 package guiPlayer.simon;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,10 @@ import guiTeacher.userInterfaces.ClickableScreen;
 
 public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private TextLabel label;
 	private ButtonInterfaceRaymond[] buttons;
 	private ProgressInterfaceRaymond progress;
@@ -29,8 +34,16 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
+		try {
+			Thread.sleep(1000);
+		} catch(InterruptedException e){
+			e.printStackTrace();
+		}
 		label.setText("");
-		nextRound();
+		if(!progress.isGameOver()) {
+			nextRound();
+		} else
+			acceptingInput = false;
 	}
 
 	private void nextRound() {
@@ -40,13 +53,12 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 		sequence.add(randomMove());
 		progress.setRound(roundNumber);
 		progress.setSequenceSize(sequence.size());
-		changeText("Simon's turn");
+		changeText("SIMON'S TURN");
 		label.setText("");
 		playSequence();
-		changeText("Your turn");
+		changeText("YOUR TURN");
 		acceptingInput = true;
 		sequenceIndex = 0;
-		
 	}
 	
 	public void changeText(String s) {
@@ -59,29 +71,18 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 	}
 	
 	public void playSequence() {
-		ButtonInterfaceRaymond b = getAButton();
+		ButtonInterfaceRaymond b;
 		for(int i = 0; i < sequence.size(); i++) {
-			if(b != null) {
-				b.dim();
-			}
 			b = sequence.get(i).getButton();
 			b.highlight();
 			int sleepTime = (10/roundNumber) * 100;
-			Thread sleep = new Thread(new Runnable() {
-
-				public void run() {
-					try {
-						Thread.sleep(sleepTime);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-						
-				}
-
-			});
-			sleep.start();
+			try {
+				Thread.sleep(sleepTime);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			b.dim();
 		}
-		b.dim();
 	}
 	
 	
@@ -93,7 +94,8 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 			viewObjects.add(b);
 		}
 		progress = getProgress();
-		label = new TextLabel(130, 230, 300, 40, "Let's play Simon!");
+		label = new TextLabel(100, 100, 300, 40, "LET'S PLAY SIMON!");
+		label.setFont(new Font("Arial", Font.BOLD + Font.ITALIC, 20));
 		sequence = new ArrayList<MoveInterfaceRaymond>();
 		// add 2 moves to start
 		lastSelectedButton = -1;
@@ -109,7 +111,7 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 	 * Placeholder until partner finishes implementation of ProgressInterface
 	 */
 	private ProgressInterfaceRaymond getProgress() {
-		return new ProgressAnnie(20, 20, 20, 20);
+		return new ProgressAnnie(100, 320, 300, 100);
 	}
 
 	private void addButtons() {
@@ -127,8 +129,8 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 		for (int i = 0; i < numberOfButtons; i++) {
 			final ButtonInterfaceRaymond b = getAButton();
 			b.setColor(colors[i]);
-			b.setX(i * 20);
-			b.setY(50);
+			b.setX((int) ((i + 1) * 100));
+			b.setY(180);
 			buttons[i] = b;
 			b.setAction(new Action() {
 
@@ -150,15 +152,16 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 
 						});
 						blink.start();
-					}
-					if(b == sequence.get(sequenceIndex).getButton()) {
-						sequenceIndex++;
-					} else {
-						progress.gameOver();
-					}
-					if(sequenceIndex == sequence.size()){ 
-					    Thread nextRound = new Thread(SimonScreenRaymond.this); 
-					    nextRound.start(); 
+						if(b == sequence.get(sequenceIndex).getButton()) {
+							sequenceIndex++;
+						} else {
+							progress.gameOver();
+							label.setText("");
+						}
+						if(sequenceIndex == sequence.size() || progress.isGameOver()){ 
+						    Thread nextRound = new Thread(SimonScreenRaymond.this); 
+						    nextRound.start(); 
+						}
 					}
 				}
 
@@ -167,7 +170,7 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 	}
 
 	private ButtonInterfaceRaymond getAButton() {
-		return new ButtonAnnie(0, 0, 20, 20, "", null);
+		return new ButtonAnnie(0, 0, 80, 80, "", null);
 	}
 
 	private MoveInterfaceRaymond randomMove() {
@@ -175,6 +178,7 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 		while (bIndex == lastSelectedButton) {
 			bIndex = (int) (Math.random() * buttons.length);
 		}
+		lastSelectedButton = bIndex;
 		return getMove(bIndex);
 	}
 
@@ -182,13 +186,7 @@ public class SimonScreenRaymond extends ClickableScreen implements Runnable {
 	 * Placeholder until partner finishes implementation of MoveInterface
 	 */
 	private MoveInterfaceRaymond getMove(int bIndex) {
-		return null;
+		return new MoveAnnie(buttons[bIndex]);
 	}
-	
-	public ArrayList<MoveInterfaceRaymond> getSequence() {
-		return sequence;
-	}
-
-
-
+		
 }
